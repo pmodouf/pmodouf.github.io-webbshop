@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Order</h1>
+      <form id="order-form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder="Enter your name"
+            required
+            minlength="2"
+            maxlength="50"
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Enter your email"
+            required
+            maxlength="50"
+          />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input
+            type="text"
+            class="form-control"
+            id="phone"
+            placeholder="Enter your phone number"
+            required
+            pattern="^[\d\s()+-]{1,50}$"
+          />
+        </div>
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input
+            type="text"
+            class="form-control"
+            id="address"
+            placeholder="Enter your address"
+            required
+            minlength="4"
+            maxlength="50"
+          />
+        </div>
+        <div class="form-group">
+          <label for="postal_code">Postal Code</label>
+          <input
+            type="text"
+            class="form-control"
+            id="postal_code"
+            placeholder="000 00"
+            required
+            pattern="^\d{3}\s\d{2}$"
+          />
+        </div>
+        <div class="form-group">
+          <label for="city">City</label>
+          <input
+            type="text"
+            class="form-control"
+            id="city"
+            placeholder="Enter your city"
+            required
+            minlength="2"
+            maxlength="50"
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit Order</button>
+      </form>
+    </div>
+
+    <script>
+      
+      const form = document.querySelector("#order-form");
+      const params = new URLSearchParams(window.location.search);
+
+      const id = params.get("id");
+      console.log(id);
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const name = document.getElementById("name");
+        const email = document.getElementById("email");
+        const adress = document.getElementById("adress");
+        const phone = document.getElementById("phone");
+        const postal_code = document.getElementById("postal_code");
+        const city = document.getElementById("city");
+
+        localStorage.setItem("Name", name.value);
+        localStorage.setItem("Email", email.value);
+        localStorage.setItem("Adress", email.value);
+        localStorage.setItem("Phone", phone.value);
+        localStorage.setItem("Postal Code", postal_code.value);
+        localStorage.setItem("City", city.value);
+        // Redirect the user to the confirmation page
+        window.location.href = `confirmation.html?id=${id}`;
+      });
+    </script>
+  </body>
+</html>
